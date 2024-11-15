@@ -26,7 +26,9 @@ export async function POST(req) {
           - Género: ${gender}
           - Comentarios adicionales: ${comments}
           
-          La rutina debe incluir ejercicios específicos, series, repeticiones y descanso entre series.`
+          La rutina debe incluir ejercicios específicos, series, repeticiones y descanso entre series.
+          La respuesta debe estar en formato JSON como el siguiente ejemplo: {comentario_general:"tienes buena condicion fisica...",rutinas:[{id:1,nombre:"flexiones",descripcion:"Realizar 3 flexiones",temporalidad:"Martes y jueves",img:"/images/nombre_ejercicio.jpg"}]}
+          En comentario general iria un breve analisis del estado del usuario y comentarios generales. Luego si no se puede crear una rutina la respuesta se debe devolver en blanco, en img debes sustituir "nombre_ejercicio" por el nombre correspondiente en minuscula`
         }
       ]
     })
