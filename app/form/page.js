@@ -1,5 +1,4 @@
 'use client'
-
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
@@ -17,10 +16,7 @@ export default function FormPage() {
     comments: ''
   })
   const router = useRouter()
-
   const [isLoading, setIsLoading] = useState(false)
-
-
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -37,15 +33,6 @@ export default function FormPage() {
     }))
   }
 
-  /*
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    // Aquí iría la lógica para llamar a la API de ChatGPT
-    // Por ahora, solo redirigimos a la página de resultados
-    router.push('/results')
-  }
-*/
-  
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -72,7 +59,6 @@ export default function FormPage() {
       setIsLoading(false)
     }
   }
-
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-center justify-center p-4">
@@ -140,7 +126,33 @@ export default function FormPage() {
           />
         </div>
 
-        <Button type="submit" className="w-full">Generar Rutina</Button>
+        {/* Muestra el spinner cuando está cargando */}
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading ? (
+            <div className="flex justify-center items-center">
+              <svg
+                className="animate-spin h-5 w-5 mr-3 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle className="opacity-25" cx="12" cy="12" r="10" strokeWidth="4"></circle>
+                <path
+                  className="opacity-75"
+                  fill="none"
+                  d="M4 12a8 8 0 0116 0"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="4"
+                ></path>
+              </svg>
+              Cargando...
+            </div>
+          ) : (
+            'Generar Rutina'
+          )}
+        </Button>
       </form>
     </div>
   )
