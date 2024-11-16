@@ -27,7 +27,7 @@ export async function POST(req) {
           - Comentarios adicionales: ${comments}
           
           La rutina debe incluir ejercicios específicos, series, repeticiones y descanso entre series.
-          La respuesta debe estar en formato JSON como el siguiente ejemplo: {comentario_general:"tienes buena condicion fisica...",rutinas:[{id:1,nombre:"flexiones",descripcion:"Realizar 3 flexiones",temporalidad:"Martes y jueves",video:"https://www.youtube.com/embed/..."}]}
+          La respuesta debe estar en formato JSON como el siguiente ejemplo: {"comentario_general":"tienes buena condicion fisica...","rutinas":[{"nombre":"flexiones","descripcion":"Realizar 3 flexiones","temporalidad":"Martes y jueves","video":"https://www.youtube.com/embed/..."}]}
           En comentario general iria un breve analisis del estado del usuario y comentarios generales. Luego si no se puede crear una rutina la respuesta se debe devolver en blanco, en video debes sustituir lo que este entre comillas por una url de you tube funcional (de preferencia en español).
           Por favor toda la informacion debe estar entre {} no incluyes ninguna palabra o string adicional fuera de estos simbolos {}`
         }
