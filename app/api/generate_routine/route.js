@@ -11,7 +11,7 @@ export async function POST(req) {
 
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4-turbo",
       messages: [
         {
           role: "system",
@@ -27,8 +27,9 @@ export async function POST(req) {
           - Comentarios adicionales: ${comments}
           
           La rutina debe incluir ejercicios específicos, series, repeticiones y descanso entre series.
-          La respuesta debe estar en formato JSON como el siguiente ejemplo: {comentario_general:"tienes buena condicion fisica...",rutinas:[{id:1,nombre:"flexiones",descripcion:"Realizar 3 flexiones",temporalidad:"Martes y jueves",img:"/images/nombre_ejercicio.jpg"}]}
-          En comentario general iria un breve analisis del estado del usuario y comentarios generales. Luego si no se puede crear una rutina la respuesta se debe devolver en blanco, en img debes sustituir "nombre_ejercicio" por el nombre correspondiente en minuscula`
+          La respuesta debe estar en formato JSON como el siguiente ejemplo: {comentario_general:"tienes buena condicion fisica...",rutinas:[{id:1,nombre:"flexiones",descripcion:"Realizar 3 flexiones",temporalidad:"Martes y jueves",video:"https://www.youtube.com/embed/..."}]}
+          En comentario general iria un breve analisis del estado del usuario y comentarios generales. Luego si no se puede crear una rutina la respuesta se debe devolver en blanco, en img debes sustituir lo que este entre comillas por una url de you tube funcional (de preferencia en espanol).
+          Por favor toda la informacion debe estar entre {} no incluyes ninguna palabra o string adicional fuera de estos simbolos {}`
         }
       ]
     })
