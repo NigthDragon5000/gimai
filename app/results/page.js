@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { Dumbbell, ArrowLeft } from 'lucide-react'
 import { useState } from 'react'
-import BottomNavBar from "@/components/ui/BottomNavBar"
+import Nutrition from "@/components/ui/Nutrition"
+import ToDo from "@/components/ui/ToDo"
 import Image from 'next/image'
 
 export default function ResultsPage() {
@@ -13,16 +14,27 @@ export default function ResultsPage() {
   const routine = searchParams.get('routine')
 
   const [showRoutines, setShowRoutines] = useState(true)
+  const [showNutrition, setShowNutrition] = useState(false)
+  const [showToDo, setShowToDo] = useState(false)
+
   const toggleRoutines = () => {
     setShowNutrition(false);
     setShowRoutines(true);
+    setShowToDo(false);
   }
 
-  const [showNutrition, setShowNutrition] = useState(false)
   const toggleNutrition = () => {
     setShowNutrition(true);
     setShowRoutines(false);
+    setShowToDo(false);
   }
+
+  const toggleToDo = () => {
+    setShowNutrition(false);
+    setShowRoutines(false);
+    setShowToDo(true);
+  }
+
 
 
   return (
@@ -36,11 +48,12 @@ export default function ResultsPage() {
         <div >
          <div className='p-5 bg-slate-300'>{JSON.parse(routine)['comentario_general']}</div> 
         </div>
-        <div className="text-gray-600 mb-4 whitespace-pre-wrap grid grid-cols-1 gap-2">
+        <div className="text-gray-600 mb-4 whitespace-pre-wrap grid grid-cols-1 gap-2
+        ">
        {/*  {routine || 'Lo sentimos, no se pudo generar una rutina. Por favor, intenta de nuevo.'}  */}
          {JSON.parse(routine)['rutinas'].map((event,index)=>(
             <div key={index} >
-            <div href="#" className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <div href="#" className=" flex flex-col  items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <iframe className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={event.video} alt="" allowFullScreen></iframe>
                 <div className="flex flex-col justify-between p-4 leading-normal">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{event.nombre}</h5>
@@ -55,14 +68,16 @@ export default function ResultsPage() {
         </div>
         </>
         )}
+
         {
           showNutrition && (
-            <div className="mt-4">
-              <h2 className="text-xl font-bold mb-2">Nutrición</h2>
-              <p className="text-gray-600">
-                {JSON.parse(routine)['nutricion']}
-              </p>
-            </div>
+            <Nutrition routine={routine} />
+          )
+        }
+
+        {
+          showToDo && (
+            <ToDo routine={routine} />
           )
         }
         <Button asChild className="mt-4">
@@ -85,6 +100,12 @@ export default function ResultsPage() {
           border-gray-300 md:px-20 px-4 py-2 hover:bg-orange-100 
           bg-slate-500 text-white hover:text-black">
           Nutricion
+          </div>
+
+          <div onClick={toggleToDo} className="boder-solid border-2
+          border-gray-300 md:px-20 px-4 py-2 hover:bg-orange-100 
+          bg-slate-500 text-white hover:text-black">
+          Ejercitar!
           </div>
 
         </div>
