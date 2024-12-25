@@ -18,7 +18,7 @@ export default function ResultsPage() {
     setShowRoutines(true);
   }
 
-  const [showNutrition, setShowNutrition] = useState(true)
+  const [showNutrition, setShowNutrition] = useState(false)
   const toggleNutrition = () => {
     setShowNutrition(true);
     setShowRoutines(false);
@@ -88,6 +88,7 @@ export default function ResultsPage() {
           </div>
 
         </div>
+
       </div>
     </div>
   )
